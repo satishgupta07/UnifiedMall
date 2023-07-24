@@ -2,6 +2,7 @@ import React from 'react'
 import Dialog from '@mui/material/Dialog';
 import { Box, Button, TextField, Typography, styled } from '@mui/material';
 import { useState } from 'react';
+import { authenticateSignup } from '../../service/api';
 
 const Component = styled(Box)`
     height: 70vh;
@@ -72,9 +73,19 @@ const accountInitialValues = {
     }
 }
 
+const signupInitialValues = {
+    firstname: '',
+    lastname: '',
+    username: '',
+    email: '',
+    password: '',
+    phone: ''
+}
+
 const LoginDialog = ({ open, setOpen }) => {
 
     const [account, toggleAccount] = useState(accountInitialValues.login)
+    const [signup, setSignup] = useState(signupInitialValues)
 
     const handleClose = () => {
         setOpen(false);
@@ -83,6 +94,14 @@ const LoginDialog = ({ open, setOpen }) => {
 
     const toggleSignup = () => {
         toggleAccount(accountInitialValues.signup);
+    }
+
+    const onInputChange = (e) => {
+        setSignup({ ...signup, [e.target.name]: e.target.value });
+    }
+
+    const signupUser = async () => {
+        let response = await authenticateSignup(signup);
     }
 
   return (
@@ -106,13 +125,13 @@ const LoginDialog = ({ open, setOpen }) => {
                     </Wrapper>
                     :
                     <Wrapper>
-                        <TextField variant='standard' label="Enter Firstname" />
-                        <TextField variant='standard' label="Enter Lastname" />
-                        <TextField variant='standard' label="Enter Username" />
-                        <TextField variant='standard' label="Enter Email" />
-                        <TextField variant='standard' label="Enter Password" />
-                        <TextField variant='standard' label="Enter Phone No." />
-                        <LoginButton>Continue</LoginButton>
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='firstname' label="Enter Firstname" />
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='lastname' label="Enter Lastname" />
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='username' label="Enter Username" />
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='email' label="Enter Email" />
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='password' label="Enter Password" />
+                        <TextField variant='standard' onChange={(e) => onInputChange(e)} name='phone' label="Enter Phone No." />
+                        <LoginButton onClick={() => signupUser()}>Continue</LoginButton>
                     </Wrapper>
                 }
             </Box>
