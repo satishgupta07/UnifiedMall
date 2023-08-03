@@ -24,8 +24,8 @@ const NavBar = () => {
   return (
     <Component>
         {
-            navData.map(data => (
-                <Container> 
+            navData.map((data, index) => (
+                <Container key={index}> 
                     <img src={data.url} alt='nav' style={{ width: 64 }} />
                     <Text>{data.text}</Text>
                 </Container>
