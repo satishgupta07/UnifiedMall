@@ -4,6 +4,7 @@ import React from 'react'
 import { Box, Button, Divider, Typography } from "@mui/material";
 import styled from "@emotion/styled";
 import Countdown from "react-countdown";
+import { Link } from "react-router-dom";
 
 const responsive = {
     desktop: {
@@ -97,12 +98,14 @@ const Slide = ({ products, title, timer }) => {
       >
         {
           products.products.map(product => (
-            <Box textAlign="center" style={{ padding: '25px 15px' }}>
-              <Image src={product.url} alt="product" />
-              <Text style={{ fontWeight: 600, color: '#212121'}}>{product.title.shortTitle}</Text>
-              <Text style={{ color: 'green' }}>{product.discount}</Text>
-              <Text style={{ color: '#7f7f7f' }}>{product.tagline}</Text>
-            </Box>
+            <Link to={`product/${product.id}`} style={{ textDecoration: 'none'}}>
+              <Box textAlign="center" style={{ padding: '25px 15px' }}>
+                <Image src={product.url} alt="product" />
+                <Text style={{ fontWeight: 600, color: '#212121'}}>{product.title.shortTitle}</Text>
+                <Text style={{ color: 'green' }}>{product.discount}</Text>
+                <Text style={{ color: '#7f7f7f' }}>{product.tagline}</Text>
+              </Box>
+            </Link>
           ))
         }
       </Carousel>

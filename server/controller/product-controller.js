@@ -1,3 +1,4 @@
+const { request } = require('express');
 const Product = require('../models/product.js');
 
 const getProducts = async (request, response) => {
@@ -10,6 +11,18 @@ const getProducts = async (request, response) => {
     }
 }
 
+const getProductById = async (request, respone) => {
+    try {
+        const id = request.params.id;
+        const product = await Product.findOne({ 'id': id});
+
+        respone.status(200).json(product);
+    } catch (error) {
+        respone.status(500).json({ message: error.message })
+    }
+}
+
 module.exports = {
-    getProducts
+    getProducts,
+    getProductById
 };
