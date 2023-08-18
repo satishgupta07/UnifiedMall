@@ -1,24 +1,30 @@
-import { Box, Button, Typography } from '@mui/material'
+import { Box, Button, Typography, styled } from '@mui/material'
 import React, { useContext, useState } from 'react'
 import {ShoppingCart} from '@mui/icons-material';
-import styled from '@emotion/styled';
 import LoginDialog from '../Login/LoginDialog';
 import { DataContext } from '../../context/DataProvider';
 import Profile from './Profile';
 
-const Wrapper = styled(Box)`
-    display: flex;
-    align-items: center;
-    margin: 0 3% 0 auto;
-    & > button, & > p, & > div {
-        margin-right: 40px;
-        font-size: 14px;
+const Wrapper = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    margin: '0 3% 0 auto',
+    '& > button, & > p, & > div' : {
+        marginRight: 40,
+        fontSize: 14,
+        alignItems: 'center'
+    },
+    [theme.breakpoints.down('md')]: {
+        display: 'block'
     }
-`
+}))
 
-const Container = styled(Box)`
-    display: flex;
-`
+const Container = styled(Box)(({ theme }) => ({
+    display: 'flex',
+    [theme.breakpoints.down('md')]: {
+        display: 'block'
+    }
+}))
 
 const LoginButton = styled(Button)`
     color: #26a69a;
