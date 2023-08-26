@@ -5,6 +5,7 @@ import Home from './components/Home/Home';
 import DataProvider from './context/DataProvider';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import DetailView from './components/Details/DetailView';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Routes>
             <Route path='/' element={<Home/>} />
             <Route path='/product/:id' element={<DetailView/>} />
+            <Route path='/cart' element={<Cart />} />
           </Routes>
         </Box>
       </BrowserRouter>
