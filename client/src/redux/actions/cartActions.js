@@ -3,7 +3,7 @@ import * as actionType from '../constants/cartConstant';
 
 export const addToCart = (id, quantity) => async(dispatch) => {
     try {
-        const data = await axios.get(`http://localhost:5000/product/${id}`);
+        const data = await axios.get(`https://unified-mall-backend.onrender.com/product/${id}`);
 
         dispatch({ type: actionType.ADD_TO_CART, payload: {...data, quantity }});
     } catch (error) {

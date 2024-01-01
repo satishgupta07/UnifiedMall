@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL = 'http://localhost:5000';
+const URL = 'https://unified-mall-backend.onrender.com';
 
 export const authenticateSignup = async (data) => {
     try {
